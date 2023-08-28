@@ -1,12 +1,10 @@
 import React from "react";
 import Stack from "@mui/material/Stack/Stack";
-import { DrawerHeader } from "../layout/sidebar/Drawer";
-import { ChildrenProps } from "../../../models/props/children.props";
+import { ChildrenProps } from "../../../models/props/common.props";
 
 const Content: React.FC<ChildrenProps> = ({ children }) => {
     return (
-        <Stack component="main" sx={{ flexGrow: 1, p: 3 }}>
-            <DrawerHeader />
+        <Stack component="main" direction="column" sx={{ flexGrow: 1, p: 3 }}>
             {children}
         </Stack>
     );

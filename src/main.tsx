@@ -7,11 +7,18 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
+import { ThemeProvider } from "@mui/material";
+import { theme } from "./assets/styles/theme.tsx";
+import "./assets/styles/global.scss";
+import { Toaster } from "react-hot-toast";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-    <BrowserRouter>
-        <QueryProvider>
-            <App />
-        </QueryProvider>
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+        <BrowserRouter>
+            <QueryProvider>
+                <App />
+                <Toaster />
+            </QueryProvider>
+        </BrowserRouter>
+    </ThemeProvider>
 );
