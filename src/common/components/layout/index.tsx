@@ -5,13 +5,14 @@ import Content from "../content/Content";
 import { Route, Routes } from "react-router-dom";
 import ProductsRouter from "../../../pages/products/router/ProductsRouter";
 import { PRODUCTS_ROUTES } from "../../../consts/routes/routes.consts";
+import Loading from "../loading/Loading";
 
 const Layout: React.FC = () => {
     return (
         <Box component="div" display="flex">
             <Sidebar />
             <Content>
-                <Suspense fallback={<p>Loading...</p>}>
+                <Suspense fallback={<Loading />}>
                     <Routes>
                         <Route path={PRODUCTS_ROUTES.ROOT} element={<ProductsRouter />} />
                     </Routes>

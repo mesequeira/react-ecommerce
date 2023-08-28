@@ -32,7 +32,9 @@ instance.interceptors.response.use(
     const navigate = useNavigate();
 
     // save the error in the store
-    useErrorsStore.getState().handleError({ code, message });
+    useErrorsStore
+      .getState()
+      .handleErrors([...useErrorsStore.getState()?.errors, { code, message }]);
 
     navigate(PUBLIC_ROUTES.ERROR);
 

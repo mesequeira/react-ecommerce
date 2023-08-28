@@ -11,8 +11,8 @@ export const PRODUCTS_ROUTES = {
   ROOT: "/products/*",
   PRODUCTS_ALL: "/",
   PRODUCT: "/products/:id",
-  PRODUCT_NEW: "/product/new",
-  PRODUCT_EDIT: "/product/edit/:id",
+  PRODUCT_NEW: "new",
+  PRODUCT_EDIT: "edit/:id",
   ORDERS: "/orders",
   ORDER: "/order/:id",
 };

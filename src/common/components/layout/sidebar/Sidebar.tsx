@@ -1,72 +1,37 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-import CssBaseline from "@mui/material/CssBaseline";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import { AppBar } from "./AppBar";
 import { Drawer, DrawerHeader } from "./Drawer";
+import { routes } from "../../../../consts/routes/routes.navigation";
+import { Route } from "../../../../models/common/routes/routes";
+import { Link } from "react-router-dom";
+import CloseIcon from "@mui/icons-material/Close";
 
 const Sidebar: React.FC = () => {
-    const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
-
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
-
-    const handleDrawerClose = () => {
-        setOpen(false);
-    };
+    const [open, setOpen] = useState<boolean>(true);
+    const handleDrawer = () => setOpen((prev) => !prev);
 
     return (
         <Box component="nav">
-            <CssBaseline />
-            <AppBar position="fixed" open={open}>
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={handleDrawerOpen}
-                        edge="start"
-                        sx={{
-                            marginRight: 5,
-                            ...(open && { display: "none" }),
-                        }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" noWrap component="div">
-                        Mini variant drawer
-                    </Typography>
-                </Toolbar>
-            </AppBar>
-            <Drawer variant="permanent" open={open}>
+            <Drawer
+                variant="permanent"
+                open={open}
+                PaperProps={{ sx: { background: "#3b49e7", border: "none" } }}
+            >
                 <DrawerHeader>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === "rtl" ? (
-                            <ChevronRightIcon />
-                        ) : (
-                            <ChevronLeftIcon />
-                        )}
+                    <IconButton onClick={handleDrawer}>
+                        {open ? <CloseIcon sx={{ color: "white" }} /> : <MenuIcon sx={{ color: "white" }} />}
                     </IconButton>
                 </DrawerHeader>
-                <Divider />
-                <List>
-                    {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-                        <ListItem key={text} disablePadding sx={{ display: "block" }}>
+                <List sx={{ margin: open ? "0" : "0 auto" }}>
+                    {routes.map(({ icon, label, path }: Route) => (
+                        <ListItem key={label} disablePadding sx={{ display: "block" }}>
                             <ListItemButton
                                 sx={{
                                     minHeight: 48,
@@ -79,16 +44,25 @@ const Sidebar: React.FC = () => {
                                         minWidth: 0,
                                         mr: open ? 3 : "auto",
                                         justifyContent: "center",
+                                        color: "white",
                                     }}
                                 >
-                                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                                    {icon}
                                 </ListItemIcon>
-                                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                                <Link
+                                    to={path}
+                                    style={{ textDecoration: "none", color: "white" }}
+                                    replace
+                                >
+                                    <ListItemText
+                                        primary={label}
+                                        sx={{ opacity: open ? 1 : 0 }}
+                                    />
+                                </Link>
                             </ListItemButton>
                         </ListItem>
                     ))}
                 </List>
-                <Divider />
             </Drawer>
         </Box>
     );

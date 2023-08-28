@@ -1,10 +1,10 @@
-import { string, number, boolean, TypeOf, object } from "zod";
+import { coerce, string, number, boolean, TypeOf, object } from "zod";
 
 export const discountSchema = object({
   name: string(),
   description: string(),
-  discountPercent: number(),
-  active: boolean(),
+  discountPercent: coerce.number(),
+  active: boolean().optional(),
 });
 
 export type Discount = TypeOf<typeof discountSchema>;
