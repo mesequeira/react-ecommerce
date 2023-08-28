@@ -2,8 +2,11 @@ import { Product } from "../../../models/services/products";
 
 export interface IProductsService {
   getProducts(): Promise<Product[]>;
-  getProduct(id: number): Promise<Product>;
-  createProduct(product: Product): Promise<boolean>;
-  updateProduct(id: number, product: Product): Promise<boolean>;
-  deleteProduct(id: number): Promise<boolean>;
+  getProduct(id: string | undefined): Promise<Product>;
+  createProduct(product: Product): Promise<Response<boolean>>;
+  updateProduct(
+    id: string | undefined,
+    product: Product
+  ): Promise<Response<boolean>>;
+  deleteProduct(id: number): Promise<Response<boolean>>;
 }
