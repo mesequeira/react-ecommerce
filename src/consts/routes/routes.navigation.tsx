@@ -1,28 +1,28 @@
 import { Route } from "../../models/common/routes/routes";
-import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
-import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
+import Inventory2Icon from "@mui/icons-material/Inventory2";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import PeopleIcon from "@mui/icons-material/People";
 
 export const routes: Route[] = [
   {
-    icon: <HomeOutlinedIcon />,
+    icon: <DashboardIcon />,
     path: "/",
-    label: "Home",
+    label: "Dashboard",
   },
-  // {
-  //   icon: <GridViewOutlinedIcon />,
-  //   path: "/dashboard",
-  //   label: "Dashboard",
-  // },
   {
-    icon: <Inventory2OutlinedIcon />,
+    icon: <Inventory2Icon />,
     path: "/products",
     label: "Products",
   },
-  // {
-  //   icon: <PeopleAltOutlinedIcon />,
-  //   path: "/customers",
-  //   label: "Customers",
-  // },
+  {
+    icon: <PeopleIcon />,
+    path: "/customers",
+    label: "Customers",
+  },
+  {
+    icon: <ShoppingCartIcon />,
+    path: "/orders",
+    label: "Orders",
+  },
 ];
