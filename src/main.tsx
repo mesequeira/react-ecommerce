@@ -8,9 +8,10 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { ThemeProvider } from "@mui/material";
-import { theme } from "./assets/styles/theme.tsx";
+import "./assets/styles/custom.scss";
 import "./assets/styles/global.scss";
 import { Toaster } from "react-hot-toast";
+import theme from "./assets/styles/theme.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
     <ThemeProvider theme={theme}>

@@ -5,8 +5,8 @@ import axios, {
   type InternalAxiosRequestConfig,
 } from "axios";
 import { useNavigate } from "react-router-dom";
-import { useErrorsStore } from "../store/errors/errors.store";
 import { PUBLIC_ROUTES } from "../consts/routes/routes.consts";
+import { getTokenJwt } from "../common/helpers/token/token.helper";
 
 const instance: AxiosInstance = axios.create();
 const API_URL = import.meta.env.VITE_API_URL;
@@ -15,6 +15,9 @@ instance.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
     config.baseURL = API_URL;
     config.withCredentials = true;
+    const token = getTokenJwt();
+
+    if (token) config.headers.Authorization = `Bearer ${token}`;
 
     return config;
   },
@@ -28,13 +31,7 @@ instance.interceptors.response.use(
     return response;
   },
   async (error: AxiosError) => {
-    const { code, message } = error;
     const navigate = useNavigate();
-
-    // save the error in the store
-    useErrorsStore
-      .getState()
-      .handleErrors([...useErrorsStore.getState()?.errors, { code, message }]);
 
     navigate(PUBLIC_ROUTES.ERROR);
 

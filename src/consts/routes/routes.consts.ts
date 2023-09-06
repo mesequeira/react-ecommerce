@@ -10,9 +10,13 @@ export const PRIVATE_ROUTES = {
 export const PRODUCTS_ROUTES = {
   ROOT: "/products/*",
   PRODUCTS_ALL: "/",
-  PRODUCT: "/products/:id",
   PRODUCT_NEW: "new",
   PRODUCT_EDIT: "edit/:id",
-  ORDERS: "/orders",
-  ORDER: "/order/:id",
+};
+
+export const ORDERS_ROUTES = {
+  ROOT: "/orders/*",
+  ORDERS_ALL: "/",
+  ORDER_NEW: "new",
+  ORDER_EDIT: "edit/:id",
 };

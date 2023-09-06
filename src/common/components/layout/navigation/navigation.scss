@@ -1,0 +1,24 @@
+@import "../../../../assets/styles/global.scss";
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.vs-container {
+  width: 100%;
+  margin: 0 auto;
+  color: $header-nav-link-color;
+}
+
+.navigation-link {
+  font-size: 17px;
+  color: #2c2c2c !important;
+  margin: 0 25px !important;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  font-weight: 300;
+}

@@ -1,10 +1,18 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { PUBLIC_ROUTES } from "../consts/routes/routes.consts";
+import useAuthorization from "../common/hooks/useAuthorization";
+import Loading from "../common/components/loading/Loading";
 
 const AuthGuard: React.FC = () => {
-    if (false) return <p>Loading...</p>;
+    const { isAuthorized, isLoading } = useAuthorization();
 
-    return true ? <Outlet /> : <Navigate replace to={PUBLIC_ROUTES.LOGIN} />;
+    if (isLoading) return <Loading />;
+
+    return isAuthorized ? (
+        <Outlet />
+    ) : (
+        <Navigate replace to={PUBLIC_ROUTES.LOGIN} />
+    );
 };
 
 export default AuthGuard;
