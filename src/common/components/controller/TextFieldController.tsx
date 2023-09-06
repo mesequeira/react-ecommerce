@@ -21,7 +21,7 @@ const TextFieldController: React.FC<TextFieldControllerProps> = ({
             name={attributeName}
             {...controlProps}
             render={({ field }) => (
-                <FormControl fullWidth>
+                <FormControl fullWidth variant="standard">
                     <TextField
                         {...field}
                         {...inputProps}
